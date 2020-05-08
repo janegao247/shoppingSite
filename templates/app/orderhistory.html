@@ -1,0 +1,122 @@
+{% extends 'app/header.html' %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {% block head%}
+    <title>My Account</title>
+    <link rel="stylesheet" href="{% static 'css/myStyle.css' %}">
+    {% endblock head%}
+
+</head>
+
+<body>
+
+
+        
+    <!--side box-->
+        {% block main %}
+        <div class="shop_sidebar_area">
+            <div class="sidebar_text">
+
+            <!-- ##### Single Widget ##### -->
+            <div class="widget catagory mb-50">
+                <!-- Widget Title -->
+                <h6 class="widget-title mb-30">My Account</h6>
+
+                <!--  Catagories  -->
+                <div class="catagories-menu">
+                    <ul>
+                        <li><a href="{% url 'orderhistory' %}">Order History</a ></li>
+                        <li><a href="{% url 'myproducts' %}">My Product</a ></li>
+                        <li><a href="#"></a ></li>
+                        <li><a href="#"></a ></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- ##### Single Widget ##### -->
+            
+            
+            </div>
+        </div>
+
+        <div class="amado_product_area section-padding-100">
+            {% if user.is_authenticated %}
+            <div class="container-fluid mt-30">
+
+                 <div class="cart-title">
+                   
+                    <h2>Order History</h2>
+                </div>
+                <div class="cart-table clearfix">      
+                    {% for order,itemlist in orderlist %}   
+                    <table class="table table-responsive">
+                        <thead>
+                            <tr>
+                                <th>Order Number:
+                                    <span style="color:#fbb710">&nbsp{{order.pk}}
+                                    </span>
+                                </th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                               
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for item in itemlist %}
+                            <tr>
+
+                                <td class="cart_product_desc">
+                                    <a style="font-size:20px" href="/app/shop/{{item.product.pk}}">{{item.product.pName}} </a>
+                                </td>
+                                <td class="price">
+                                    <span style="color:#fbb710">${{item.price}}</span>
+                                </td>
+                                <td class="qty">
+                                    <div class="qty-btn d-flex">
+                                        <p style="color:#fbb710">Qty:<span>{{item.quantity}}</span></p>
+                                       
+                                    </div>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                           
+
+                        </tbody>
+                        <tr>
+                            <th>Total:<p style="color:#fbb710">{{order.price}}</p></th>
+                            <th>Pay Method:<p style="color:#fbb710">{{order.pay}}</p></th>
+                        </tr>
+                    </table>
+                    {% endfor %}
+                    <section>
+                        
+                    </section>
+                  </div>
+            </div>
+
+            {% else %}
+            <div class="container-fluid mt-30">
+
+                <div class="cart-title">
+                   
+                    <h2>Order History</h2>
+                </div>
+
+                <div class="cart-title">
+                    <h2>Please <a href="login.html">login</a> or <a href="signup.html">sign up</a>.</h2>
+                </div>
+                
+
+            </div>
+            {% endif %}
+        </div>
+        {% endblock main%}
+
+
+</body>
+
+</html>
