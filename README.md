@@ -1,15 +1,10 @@
-﻿# McGill C2C Marketplace
-A marketplace project implemented with django and JavaScript in Python. McGill University Comp 307 final project, 2020 winter.
+﻿# Marketplace
+A marketplace project implemented with django and JavaScript in Python. 
 ## LocalHost 
 ```
 The webpage is hosted on 127.0.0.1:8000/app
 ```
-## Group members
-```
-Jane  Gao  260750643
-Kehan Li   260765991
-Jie   Min  260846867
-```
+
 ### Prerequisites
 ```
 python 3.6 or above
